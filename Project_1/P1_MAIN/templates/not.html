@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Bar with Filter</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Search Bar with Filter</h1>
+        <form id="searchForm" action="/search" method="GET">
+            <div class="form-group">
+                <input type="text" id="searchInput" name="term" class="form-control" placeholder="Search...">
+            </div>
+            <!-- Search results will be displayed here -->
+            <div class="searchResults">{{ search_term }} is not a card :(</div>
+        </form>
+    </div>
+    
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Custom JavaScript -->
+
+</body>
+<style> 
+.searchResults{
+    border: 2px solid black ; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding : 2.5rem;
+}
+</style>
+</html>

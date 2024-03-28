@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body class='bg-dark'>
+    <h1>Search Bar with Filter</h1>
+    <div class='container bg-dark'>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                Series
+            </button>
+            <ul class="dropdown-menu">
+                {% for name in image_names %}
+                <li> <a href="{{ url_for('image_detail', image_name=name) }}"></a> {{name.strip('png').split('_', 1)[1].replace('_', ' ').replace('fire emblem','').replace('.','')}}</li>
+                {% endfor %}
+         
+            </ul>
+        </div>
+        <div class='row'>
+            <div class='col-12'>
+                <!-- {{ image_name.replace('_', ' ').replace('.png', '').replace('1','') }}         -->
+            </div>
+            <div class='col-6'> Game IMG</div>
+            <div class='col-6 figure'> GAME STATS </div>
+        </div>
+        <div>
+            <h1> Characters in Cipher in Booster Boxes</h1>
+        </div>
+        <div class="row">
+            {% for c_name in yes_ciphers %}
+            <div class="col-12 col-sm-3 mb-3">
+                <!-- Added mb-3 class for margin-bottom -->
+                <a href="{{ url_for('search', term=c_name) }}" class="card-link">
+                    <div class="card text-black text-center">
+                        <div class="p-2 ">{{ c_name }}</div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class='p-3 bg-warning'> Text</div>
+        <h1> Characters NOT in Cipher Booster Boxes</h1>
+        <div class='row'>
+            {% for n_name in no_ciphers %}
+            <div class='mt-2 mb-2 col-sm-3 text-white'>{{ n_name}}</div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

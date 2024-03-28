@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 1: Fire Emblem Card Scrapper Dashboard By Andrei Ramir Francisco</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-color: #171717;">
+<div class="container mt-5 text-white" >
+    <h1>Fire Emblem Card MainLine in Booster Box Sorter</h1>
+    <form id="searchForm" action="/search" method="GET">
+        <div class="form-group">
+            <input type="text" id="searchInput" name="term" class="form-control" placeholder="Search...">
+        </div>
+        <div id="autocompleteResults"></div>
+        <thead>
+            <tr>
+                <button type="button" class="mb-2 btn btn-primary">Main Line Games</button>
+                <button type="button" class="mb-2 btn btn-warning">Top Characters in each series</button>
+                <button type="button" class="mb-2 btn btn-success" style="background-color : orange">Dataset</button>
+                <button type="button" class="mb-2 btn btn-success text-white" stlye = "background-color : #333">Github</button>
+            </tr>
+        </thead>
+    </form>
+    <div class="row justify-content-center">
+        {% for name in image_names %}
+        <div class="col-md-3 mb-4">
+            <div class="image-container position-relative">
+                <a href="{{ url_for('image_detail', image_name=name) }}">
+                    <img src="{{ url_for('static', filename='images/' + name) }}" class="img-fluid" style="width: 100%; height: 10rem;">
+                    <div class="description p-1 bg-dark text-center">
+                        {{ name.strip('png').split('_', 1)[1].replace('_', ' ').replace('fire emblem','').replace('.','') }}
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    var text_inside = document.getElementById('searchInput').value; // Assuming searchInput is an input element
+    var search_options = document.querySelectorAll('.d-none.col-12');
+    var matchFound = false;
+
+    search_options.forEach(option => {
+        var optionText = option.textContent.trim();
+        if (text_inside.includes(optionText)) {
+            matchFound = true;
+        }
+    });
+
+    if (matchFound) {
+        search_options.forEach(option => {
+            option.classList.remove('d-none');
+        });
+    } else {
+        search_options.forEach(option => {
+            option.classList.add('d-none');
+        });
+    }
+</script>
+
+
+<style>
+    .description {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 5px;
+        width: 100%;
+        box-sizing: border-box;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .image-container {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .image-container:hover .description {
+        opacity: 1;
+    }
+</style>
+</body>
+</html>
