@@ -1,15 +1,9 @@
-Close to Done Project 1 : Fire Emblem Booster Box Only Card Sorter 
-Goal : Show that using the request library in python and use the GET/POST METHOD
+# Project 1 Fire Emblem Booster Box Card Sorter
+Used the request library in python to scrape public data for the card game Fire Emblem.Then cleaned data with Pandas and at the end created an application where user can search for cards displaying information like histograms and card details. 
 
-FEATURES as of March :
-1. Scrapped and cleaned data from the website Sernest Forest Cipher
-2. Show histograms for each unique character.
-3. Display each Main Console Games for the series Fire Emblem by scrapping from Fire Emblem Wiki 
-4. Use Bootstrap/Flask/Jquery to make a clean user interface
-
-Examples of issues solved : 
-Character Ids not matching
-Character Card not in the right Booster
+# Tasks solved
+Character Ids not matching and fixed with python pandas.
+Character Card not in the right Booster and fixed with python pandas.
 
 Technologies USED: 
 Python 
